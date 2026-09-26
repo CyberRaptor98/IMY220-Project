@@ -18,8 +18,8 @@ function LoginForm(props){
     const getLoginForm = (e) => {
         e.preventDefault();
         //Validation
-        if(username.length < 8){
-            alert("Username must be at least 8 characters.");
+        if(username.length < 0){
+            alert("enter a Username.");
             return;
         }
         if(password.length < 8){
@@ -34,7 +34,7 @@ function LoginForm(props){
                 username : username,
                 password : password
             }
-            console.log(loginJson)
+            //console.log(loginJson)
             props.handleUForm(loginJson);
 
             clearFeilds();
@@ -57,7 +57,7 @@ function LoginForm(props){
                 email : email
             }
 
-            console.log(registerJson)
+            //console.log(registerJson)
             props.handleUForm(registerJson);
             clearFeilds();
             
@@ -67,7 +67,7 @@ function LoginForm(props){
     return(
         <div>
             <h1>Photoshare</h1>
-            <p>Photosharing webApp</p><br/>
+            <p>Share Photos here WOW</p><br/>
 
             {isLogin?(
                 <form onSubmit={getLoginForm}>

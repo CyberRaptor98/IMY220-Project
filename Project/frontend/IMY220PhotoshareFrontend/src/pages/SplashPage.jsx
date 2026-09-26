@@ -1,19 +1,24 @@
 import { useState } from 'react'
 import '../components/LoginForm.jsx'
 import LoginForm from '../components/LoginForm.jsx';
+import { useNavigate } from 'react-router-dom';
+import {useUser} from "../components/UserContext.jsx";
 
 function SplashPage(){
-    const [serverLink, setServerLink] = useState("");
+    const navigate = useNavigate();
+    const { setCurrentUser } = useUser();
 
     const handleUserForm = (uForm)=>{
+        console.log(uForm);
+        let serverlink;
         if(uForm.type == "Register"){
-            setServerLink("http://localhost:3000/register");
+            serverlink = "http://localhost:3000/register";
         } else {
-            setServerLink("http://localhost:3000/login");
+            serverlink = "http://localhost:3000/login";
         }
 
 
-        fetch(serverLink, {
+        fetch(serverlink, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -22,8 +27,15 @@ function SplashPage(){
     })
     .then(response => response.json())
     .then(data => {
+        if(!data.message){
         console.log(data);
-    });
+        setCurrentUser(data);
+        navigate("/home");
+        } else {
+            alert(data.message);
+        }
+
+    }).catch((error) => console.error(error))
 }
 
     return(

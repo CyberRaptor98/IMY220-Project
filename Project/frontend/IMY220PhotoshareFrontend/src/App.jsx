@@ -11,24 +11,47 @@ import NotFound from './pages/NotFound.jsx'
 import HomePage from './pages/HomePage.jsx'
 import PostPage from './pages/PostPage.jsx'
 import ProfilePage from './pages/ProfilePage.jsx'
+import {UserProvider} from "./components/UserContext.jsx";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 
 function App() {
 
   return (
-    <>
-    <BrowserRouter>
-            <Navigation/>
-            <Routes>
-              <Route path="/" element={<SplashPage />} />
-              <Route path="*" element={<NotFound/>}/>
-              <Route path="/home" element={<HomePage/>}/>
-              <Route path="/post" element = {<PostPage/>}/>
-              <Route path="/profile" element= {<ProfilePage/>}/>
-              <Route path="/profile/:id" element= {<ProfilePage/>}/>
-          </Routes>
-    </BrowserRouter>
-    </>
+    <UserProvider>
+      <BrowserRouter>
+              <Navigation/>
+              <Routes>
+                <Route path="/" element={<SplashPage />} />
+
+                <Route path="/home" element={
+                            <ProtectedRoute>
+                                <HomePage />
+                            </ProtectedRoute>
+                          }/>
+
+                <Route path="/post" element = {
+                            <ProtectedRoute>
+                                <PostPage />
+                            </ProtectedRoute>
+                            }/>
+
+                <Route path="/profile" element= {
+                            <ProtectedRoute>
+                                <ProfilePage/>
+                            </ProtectedRoute>
+                            }/>
+
+                <Route path="/profile/:id" element= {
+                            <ProtectedRoute>
+                                <ProfilePage/>
+                            </ProtectedRoute>
+                            }/>
+
+                <Route path="*" element={<NotFound/>}/>
+            </Routes>
+      </BrowserRouter>
+    </UserProvider>
   )
 }
 

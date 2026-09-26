@@ -4,7 +4,9 @@ import Image from './Image'
 function Post(props){
     const post = props.Post;
     return(
-        <div>
+        <>
+        {post.map((post) =>
+        <div key = {post._id}>
             <h2>{post.Name}</h2>
             
             <Image image={post.image}/>
@@ -18,7 +20,8 @@ function Post(props){
             
             <h3>Comments</h3>
             <Comment post={post.Comments}/>
-        </div>
+        </div>)}
+        </>
     )
 }
 
