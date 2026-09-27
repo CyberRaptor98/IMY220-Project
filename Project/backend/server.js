@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import { MongoClient, ObjectId } from "mongodb";
 
 import { getDB } from "./db.js";
 
@@ -35,11 +36,11 @@ app.post("/login", async (req, res) => {
     }
 
     const { password: userPassword, ...userWithoutPassword } = user;
-
+        //console.log ("line 39");
+        //console.log (userWithoutPassword);
         res.json(userWithoutPassword);
 
-    //console.log (user);
-    res.json(userWithoutPassword);
+        
     } catch (err){
         res.json({message: err.message})
     }
@@ -101,12 +102,35 @@ app.get("/api/posts", async (req, res) => {
         res.status(200).json(posts);
     }catch (err){
         res.json({
-            message: "an error occured",
-            error:err.message
+            message: "err.message"
         });
     }
     
 });
+
+// retrieve a users posts
+app.get("/user/:id", async (req,res) => {
+    try{
+        const id = req.params.id;
+        if(!id){
+            res.json({message: "please provide an id"});
+            return;
+        }
+
+        const db = await getDB();
+
+        const collection = db.collection("posts");
+        const posts = await collection.find({ownerId: new ObjectId(id)}).toArray();
+        console.log("Users Array");
+        console.log(posts);
+        res.status(200).json(posts);
+    }catch (err){
+        res.json({
+            message: err.message
+        });
+    }
+})
+
 
 app.listen(3000, () => {
     console.log("Server running on port 3000");

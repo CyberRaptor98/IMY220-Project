@@ -1,11 +1,9 @@
 
 
 function PostPreview(props){
-    const posts = props.posts;
+    const post = props.posts;
     return(
         <div>
-            {posts.map((post)=>
-            <div key={post.id}>
                 <img src={post.image} alt={post.Description}/>
                 <p>{post.username}</p>
                 <p>{post.Tag.map((tag) => `#${tag}`).join(" ")}</p>
@@ -13,8 +11,6 @@ function PostPreview(props){
                 <br/>
                 <br/>
                 <br/>
-            </div>    
-            )}
         </div>
     )
 }
