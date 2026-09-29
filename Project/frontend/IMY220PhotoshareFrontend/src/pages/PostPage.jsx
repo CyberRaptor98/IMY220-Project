@@ -1,20 +1,16 @@
 import Post from '../components/Post'
 import {useState, useEffect} from 'react'
+import { useLocation } from "react-router-dom";
 
 function PostPage(){
     const [posts,setPosts] = useState([]);
 
-    useEffect (()=>{
-        fetch("http://localhost:3000/api/posts")
-        .then((response) => response.json())
-        .then((data) => setPosts(data))
-        .catch((error) => console.error("Error fetching posts:", error));
-    },[])
+    const location = useLocation();
+    const post = location.state;
 
     return(
-        <div>
-            
-            <Post Post={posts}/>
+        <div> 
+            <Post Post={post}/>
         </div>
     )
 }

@@ -10,7 +10,7 @@ function HomePage(){
     const { currentUser } = useUser();
 
     const localFeedArray = [];
-    const globalFeedArray = []
+    //const globalFeedArray = []
 
     async function getLocalFeed(){
         localFeedArray.length = 0;
@@ -20,7 +20,7 @@ function HomePage(){
         friendIds.map((friend) => {
             // console.log("Friend array");
             // console.log(friend._id);
-            fetch( `http://localhost:3000/user/${friend._id}` , {
+        fetch( `http://localhost:3000/user/${friend._id}` , {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -49,10 +49,10 @@ function HomePage(){
             if ("message" in data) {
                 console.error(data.message);
             } else {
-                globalFeedArray.push(...data);
-                setGlobalFeed(globalFeedArray);
-                console.log("Global Feed")
-                console.log(data)
+                //globalFeedArray.push(...data);
+                setGlobalFeed(data);
+                // console.log("Global Feed")
+                // console.log(data)
             }
         }).catch((error) => console.error(error))
     }

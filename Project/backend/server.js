@@ -20,7 +20,7 @@ app.post("/login", async (req, res) => {
         return;
     }
 
-    if(username.length < 0|| password.length < 8){
+    if(username.length <= 0|| password.length < 8){
         res.json({
             message: "Please enter valid username and password"
         })
@@ -121,8 +121,6 @@ app.get("/user/:id", async (req,res) => {
 
         const collection = db.collection("posts");
         const posts = await collection.find({ownerId: new ObjectId(id)}).toArray();
-        console.log("Users Array");
-        console.log(posts);
         res.status(200).json(posts);
     }catch (err){
         res.json({
@@ -131,6 +129,55 @@ app.get("/user/:id", async (req,res) => {
     }
 })
 
+//add comment
+app.post("/comment",async (req,res)=> {
+    try{
+        const {postid, userId, currentUsername,comment} = req.body;
+
+    if(!postid||!userId || !currentUsername ||!comment){
+        res.json({message:"Please Enter valid parameters"});
+        return;
+    }
+
+    if(comment === ""){
+        res.json({message:"Please Enter a comment"});
+        return;
+    }
+
+    
+    const currentDate = new Date().toISOString().split("T")[0];
+
+    const db = await getDB();
+    const collection = db.collection("posts");
+
+
+    await collection.updateOne(
+        {_id: new ObjectId(postid)},
+        {
+            $push:{
+                Comments: {
+                    _id : new ObjectId(),
+                    user: currentUsername,
+                    comment:comment,
+                    createdAt: currentDate
+                }
+            }
+        }
+    );
+
+    res.json({successMessage: "comment Posted",
+        comment: {
+                _id: new ObjectId(userId),
+                user: currentUsername,
+                comment:comment,
+                createdAt: currentDate
+            }
+     });
+    }
+    catch (err){
+        res.json({message : err.message});
+    }
+})
 
 app.listen(3000, () => {
     console.log("Server running on port 3000");
