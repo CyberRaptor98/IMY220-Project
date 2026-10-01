@@ -9,6 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+//login an existing user
 app.post("/login", async (req, res) => {
     try{
     const {username,password} = req.body;
@@ -46,6 +47,7 @@ app.post("/login", async (req, res) => {
     }
 });
 
+//add new user
 app.post("/register", async (req, res) => {
     try {
     const currentDate = new Date().toISOString().split("T")[0];
@@ -92,6 +94,7 @@ app.post("/register", async (req, res) => {
     
 });
 
+//get all posts
 app.get("/api/posts", async (req, res) => {
     try{
         const db = await getDB();
@@ -150,32 +153,63 @@ app.post("/comment",async (req,res)=> {
     const db = await getDB();
     const collection = db.collection("posts");
 
-
-    await collection.updateOne(
-        {_id: new ObjectId(postid)},
-        {
-            $push:{
-                Comments: {
+    const newComment = {
                     _id : new ObjectId(),
                     user: currentUsername,
                     comment:comment,
                     createdAt: currentDate
                 }
+
+    await collection.updateOne(
+        {_id: new ObjectId(postid)},
+        {
+            $push:{
+                Comments: newComment
             }
         }
     );
 
     res.json({successMessage: "comment Posted",
-        comment: {
-                _id: new ObjectId(userId),
-                user: currentUsername,
-                comment:comment,
-                createdAt: currentDate
-            }
+        comment: newComment
      });
     }
     catch (err){
         res.json({message : err.message});
+    }
+})
+
+//delete comment
+app.delete("/post/comment/delete/:commetId", async (req,res)=>{
+    try{
+        const commentId = req.params.commetId;
+        const postId = req.body.postId;
+
+        if(!postId || !commentId){
+            throw new Error("Invalid Parameters");
+        }
+        
+
+        const db = await getDB();
+        const collection = db.collection("posts");
+
+        const result = await collection.updateOne(
+            {_id: new ObjectId(postId)},
+            {
+                $pull:{
+                    Comments : {
+                        _id: new ObjectId (commentId)
+                    }
+                }
+            }
+        );
+
+        if (result.modifiedCount === 0) {
+            return res.status(404).json({ message: "Post or comment not found" });
+        }
+
+        res.status(200).json({id : commentId});
+    }catch(err){
+        res.status(500).json({message : err.message});
     }
 })
 

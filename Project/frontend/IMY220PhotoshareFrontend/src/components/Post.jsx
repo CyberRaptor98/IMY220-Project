@@ -5,7 +5,7 @@ import { useUser } from "./UserContext.jsx";
 
 function Post(props){
     const [comment,setComment] = useState ("");
-    const [postArray, setPostArray] = useState ([]);
+    const [commentArray, setCommentArray] = useState ([]);
     
     const { currentUser } = useUser();
 
@@ -31,7 +31,7 @@ function Post(props){
         ).then((res)=>{
             console.log(res);
             if (res.comment) {
-                setPostArray(prevComments => [ ...prevComments, res.comment]);
+                setCommentArray(prevComments => [ ...prevComments, res.comment]);
             } else if (res.message) {
                 console.error(res.message);
             }
@@ -42,7 +42,7 @@ function Post(props){
         setComment("");
     }
     useEffect(() => {
-    setPostArray(post.Comments||[]);
+    setCommentArray(post.Comments||[]);
     },[])
 
     return(
@@ -50,7 +50,7 @@ function Post(props){
             <h2>{post.Name}</h2>
             
             <Image image={post.image}/>
-            <p>{post.username}</p>
+            <p>Posted by: {post.username}</p>
             <p>Date Posted: {post.DatePosted}</p>
             <p>{post.Tag.map((tag) => `#${tag}`).join(" ")}</p>
             <p>Views: {post.views}</p>
@@ -68,7 +68,11 @@ function Post(props){
                 <button type="submit">comment</button>
             </form>
                 
-            <Comment post={postArray}/>
+            <Comment 
+            post={commentArray} 
+            setCommentArray={setCommentArray} 
+            postId={post._id}/>
+
         </div>
         
     )

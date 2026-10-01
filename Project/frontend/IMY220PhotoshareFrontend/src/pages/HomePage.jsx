@@ -6,7 +6,7 @@ import { useUser } from "../components/UserContext";
 function HomePage(){
     const [localFeed, setlocalFeed] = useState([]);
     const [globalFeed, setGlobalFeed] = useState([]);
-    //const [freindsArray, setFreindsArray] = useState([]);
+    const [viewGlobal, setViewGlobal] = useState(true);
     const { currentUser } = useUser();
 
     const localFeedArray = [];
@@ -65,11 +65,20 @@ function HomePage(){
 
     return(
         <div>
-            <SearchBar/>
-            <h2>Local Feed</h2>
-            <PostList posts={localFeed}/>
-            <h2>Global Feed</h2>
-            <PostList posts={globalFeed}/>
+            <SearchBar toggleFeed={setViewGlobal}/>      
+            {
+                viewGlobal ? (
+                <>
+                    <h2>Global Feed</h2>
+                    <PostList posts={globalFeed}/>
+                </>
+                ) : (
+                <>
+                    <h2>Local Feed</h2>
+                    <PostList posts={localFeed}/>
+                </>
+                )
+            }
         </div>
     )
 }

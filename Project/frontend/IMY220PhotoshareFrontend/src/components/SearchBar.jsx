@@ -1,23 +1,38 @@
 import { useState } from 'react'
 
-function SearchBar(){
+function SearchBar(props){
     const [seacrhParam,SetSearchParam] = useState("");
+
+    const setFeed = props.toggleFeed;
+
+    const globalFeed = () => {
+        setFeed(true);
+    }
+
+    const localFeed = () => {
+        setFeed(false);
+    }
 
     return (
     <div>
         <input
-        type="text"
-        placeholder="SearchBar"
-        value={seacrhParam}
+            type="text"
+            placeholder="SearchBar"
+            value={seacrhParam}
+            onChange={(e)=> SetSearchParam(e.target.value)}
         />
 
         <label>
-            <input type="radio" />
-            Condition 1
+            Global Feed
+            <input type="radio" 
+                onClick={globalFeed}
+            />
         </label>
         <label>
-            <input type="radio" />
-            Condition 2
+            Local Feed
+            <input type="radio" 
+                onClick={localFeed}
+            />
         </label>
     </div>
     )
