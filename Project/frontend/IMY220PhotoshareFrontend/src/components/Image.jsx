@@ -1,11 +1,10 @@
 
 
-function Image(props){
-    const image = props.image;
+function Image({image,alt}){
 
     return(
         <>
-            <img src={image} alt="an image"></img>
+            <img className="block w-full object-cover" src={`http://localhost:3000/uploads/${image}`} alt={alt}></img>
         </>
     )
 }

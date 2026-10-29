@@ -64,17 +64,17 @@ function HomePage(){
     )
 
     return(
-        <div>
+        <div className="min-h-screen bg-gray-100 px-4 py-6">
             <SearchBar toggleFeed={setViewGlobal}/>      
             {
                 viewGlobal ? (
                 <>
-                    <h2>Global Feed</h2>
+                    <h2 className="mb-2 mt-6 text-center text-2xl font-bold text-gray-800">Global Feed</h2>
                     <PostList posts={globalFeed}/>
                 </>
                 ) : (
                 <>
-                    <h2>Local Feed</h2>
+                    <h2 className="mb-2 mt-6 text-center text-2xl font-bold text-gray-800">Local Feed</h2>
                     <PostList posts={localFeed}/>
                 </>
                 )

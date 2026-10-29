@@ -8,8 +8,11 @@ import HomePage from './pages/HomePage.jsx'
 import PostPage from './pages/PostPage.jsx'
 import ProfilePage from './pages/ProfilePage.jsx'
 import LogoutButton from './components/LogoutButton.jsx'
+import CreatePostPage from "./pages/CreatePostPage.jsx"
+import CreateAlbumPage from "./pages/CreateAlbumPage.jsx"
 import {UserProvider} from "./components/UserContext.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import EditProfilePage from "./pages/EditProfilePage.jsx";
 
 
 function App() {
@@ -28,15 +31,27 @@ function App() {
                       </ProtectedRoute>
                     }/>
 
-          {/* <Route path="/post" element = {
+          <Route path="/album" element = {
                       <ProtectedRoute>
                           <PostPage />
                       </ProtectedRoute>
-                      }/> */}
+                      }/>
 
           <Route path="/post" element = {
                       <ProtectedRoute>
                           <PostPage />
+                      </ProtectedRoute>
+                      }/>
+
+          <Route path="/ablum" element= {
+                      <ProtectedRoute>
+                          <CreateAlbumPage/>
+                      </ProtectedRoute>
+                      }/>
+
+          <Route path="/create/post" element= {
+                      <ProtectedRoute>
+                          <CreatePostPage/>
                       </ProtectedRoute>
                       }/>
 
@@ -46,9 +61,9 @@ function App() {
                       </ProtectedRoute>
                       }/>
 
-          <Route path="/profile/:id" element= {
+          <Route path="/profile/user" element= {
                       <ProtectedRoute>
-                          <ProfilePage/>
+                          <EditProfilePage/>
                       </ProtectedRoute>
                       }/>
 

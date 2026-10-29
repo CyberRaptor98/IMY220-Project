@@ -65,62 +65,74 @@ function LoginForm(props){
     }
 
     return(
-        <div>
-            <h1>Photoshare</h1>
-            <p>Share Photos here WOW</p><br/>
+        <div className="mx-auto flex w-full max-w-md flex-wrap gap-3 rounded-2xl bg-white p-8 shadow-xl">
+            <h1 className="w-full text-center text-3xl font-bold text-indigo-600">Photoshare</h1>
+            <p className="w-full text-center text-gray-500">Share Photos here WOW</p><br className="hidden"/>
 
             {isLogin?(
-                <form onSubmit={getLoginForm}>
-                    <label>Username: </label><br/>
-                    <input 
+                <form onSubmit={getLoginForm} className="flex w-full flex-col gap-4">
+                    <label className="flex flex-col gap-1 text-sm font-medium text-gray-700">Username: <br className="hidden"/>
+                    <input className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200" 
                     value = {username}
                     onChange={(e) => setUsername(e.target.value)}
-                    type="text" required></input><br/>
+                    type="text" required></input>
+                    </label>
+                    <br className="hidden"/>
 
-                    <label>Password: </label><br/>
-                    <input 
+                    <label className="flex flex-col gap-1 text-sm font-medium text-gray-700">Password: <br className="hidden"/>
+                    <input className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200" 
                     value = {password}
                     onChange={(e) => setPassword(e.target.value)}
-                    type="password" required></input><br/>
-                    <p>Forgot your password Too bad make a new account Lol</p>
-                    <button type="submit" >Login</button>
+                    type="password" required></input>
+                    </label>
+                    <br className="hidden"/>
+
+                    <p className="text-xs text-gray-500">Forgot your password Too bad make a new account Lol</p>
+                    <button type="submit" className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700 w-full">Login</button>
                 </form>
         
             ):(
-                <form onSubmit={getLoginForm}>
-                <label>Username: </label><br/>
-                <input 
+                <form onSubmit={getLoginForm} className="flex w-full flex-col gap-4">
+                <label className="flex flex-col gap-1 text-sm font-medium text-gray-700">Username: <br className="hidden"/>
+                <input className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200" 
                 value = {username}
                 onChange={(e) => setUsername(e.target.value)}
-                type="text" required></input><br/>
+                type="text" required></input>
+                </label>
+                <br className="hidden"/>
 
-                <label>Email: </label><br/>
-                <input 
+
+                <label className="flex flex-col gap-1 text-sm font-medium text-gray-700">Email: <br className="hidden"/>
+                <input className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200" 
                 value = {email}
                 onChange={(e) => setEmail(e.target.value)}
-                type="text" required></input><br/>
+                type="text" required></input><br className="hidden"/>
+                </label>
 
-                <label>Password: </label><br/>
-                <input 
+                <label className="flex flex-col gap-1 text-sm font-medium text-gray-700">Password: <br className="hidden"/>
+                <input className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200" 
                 value = {password}
                 onChange={(e) => setPassword(e.target.value)}
-                type="password" required></input><br/>
+                type="password" required></input>
+                </label>
+                <br className="hidden"/>
 
-                <label>Repeat Password: </label><br/>
-                <input 
+                <label className="flex flex-col gap-1 text-sm font-medium text-gray-700">Repeat Password: <br className="hidden"/>
+                <input className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200" 
                 value = {rPassword}
                 onChange={(e) => setRPassword(e.target.value)}
-                type="password" required></input><br/>
-                <button type="submit" >Register</button>
+                type="password" required></input><br className="hidden"/>
+                </label>
+                <button type="submit" className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700 w-full">Register</button>
                 </form>
             )}
             
-            <h2></h2>
-            <button
+            <h2 className="hidden"></h2>
+            <button className="rounded-lg bg-gray-200 px-4 py-2 text-sm font-semibold text-gray-700 transition hover:bg-gray-300 flex-1"
                 onClick={()=>setIsLogin(true)}
             >Login</button>
 
-            <button
+            <button className="rounded-lg bg-gray-200 px-4 py-2 text-sm font-semibold text-gray-700 transition hover:bg-gray-300 flex-1"
                 onClick={()=>setIsLogin(false)}
             >SignUp</button>
 

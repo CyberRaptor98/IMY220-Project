@@ -46,26 +46,26 @@ function Post(props){
     },[])
 
     return(
-        <div key = {post._id}>
-            <h2>{post.Name}</h2>
+        <div key = {post._id} className="mx-auto my-6 flex w-full max-w-2xl flex-wrap items-center gap-x-4 gap-y-2 rounded-2xl bg-white p-6 shadow-md [&>img]:max-h-[32rem] [&>img]:w-full [&>img]:rounded-xl [&>img]:bg-gray-100 [&>img]:object-contain">
+            <h2 className="w-full text-2xl font-bold text-gray-900">{post.Name}</h2>
             
             <Image image={post.image}/>
-            <p>Posted by: {post.username}</p>
-            <p>Date Posted: {post.DatePosted}</p>
-            <p>{post.Tag.map((tag) => `#${tag}`).join(" ")}</p>
-            <p>Views: {post.views}</p>
-            <p>Likes: {post.Likes}</p><button>Like Post</button>
+            <p className="w-full text-sm text-gray-500">Posted by: {post.username}</p>
+            <p className="w-full text-sm text-gray-500">Date Posted: {post.DatePosted}</p>
+            <p className="w-full text-sm font-medium text-indigo-600">{post.Tag.map((tag) => `#${tag}`).join(" ")}</p>
+            <p className="text-sm text-gray-600">Views: {post.views}</p>
+            <p className="text-sm text-gray-600">Likes: {post.Likes}</p><button className="rounded-full bg-pink-500 px-4 py-1.5 text-sm font-semibold text-white transition hover:bg-pink-600">Like Post</button>
 
-            <p>{post.Description}</p>
+            <p className="mt-2 w-full text-gray-800">{post.Description}</p>
             
-            <h3>Comments</h3>
-            <form onSubmit={addComment}>
-                <input placeholder='Leave a comment' 
+            <h3 className="mt-4 w-full border-t border-gray-200 pt-4 text-lg font-semibold text-gray-900">Comments</h3>
+            <form onSubmit={addComment} className="flex w-full gap-2">
+                <input className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder='Leave a comment' 
                 value={comment} 
                 onChange={(e)=> setComment(e.target.value)}
                 />
 
-                <button type="submit">comment</button>
+                <button type="submit" className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700">comment</button>
             </form>
                 
             <Comment 

@@ -39,7 +39,7 @@ function SplashPage(){
 }
 
     return(
-    <div>
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-indigo-100 to-pink-100 p-4">
         <LoginForm handleUForm = {handleUserForm}/>
     </div>
     )

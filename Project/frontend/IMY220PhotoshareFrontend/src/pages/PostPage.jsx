@@ -9,7 +9,7 @@ function PostPage(){
     const post = location.state;
 
     return(
-        <div> 
+        <div className="min-h-screen bg-gray-100 px-4 py-8">
             <Post Post={post}/>
         </div>
     )

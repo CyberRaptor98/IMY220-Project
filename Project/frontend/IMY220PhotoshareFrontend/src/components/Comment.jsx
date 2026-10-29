@@ -30,13 +30,13 @@ function Comment(props){
     }
 
     return(
-        <dl>
+        <dl className="mt-4 flex w-full flex-col gap-3">
             {comments.map((comment)=>
-            <div key={comment._id}>
-                <dt>{comment.user}</dt>
-                <dd>{comment.comment}</dd>
-                {currentUser.username === comment.user ? (<button onClick={() => removeComment(comment._id)}>Delete Comment</button>) : (<></>)}
-                <br></br>
+            <div key={comment._id} className="flex flex-col gap-1 rounded-lg bg-gray-50 p-3">
+                <dt className="text-sm font-semibold text-gray-900">{comment.user}</dt>
+                <dd className="text-sm text-gray-700">{comment.comment}</dd>
+                {currentUser.username === comment.user ? (<button onClick={() => removeComment(comment._id)} className="rounded-lg bg-red-500 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-red-600 self-start">Delete Comment</button>) : (<></>)}
+                <br className="hidden"></br>
             </div>
             )}
         </dl> 
