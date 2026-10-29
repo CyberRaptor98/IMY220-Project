@@ -15,6 +15,7 @@ function LoginForm(props){
         setRPassword("");
     }
 
+    
     const getLoginForm = (e) => {
         e.preventDefault();
         //Validation

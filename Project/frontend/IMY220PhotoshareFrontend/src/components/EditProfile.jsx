@@ -95,6 +95,7 @@ function EditProfile(props){
             </form>
         </>
     );
+    
 }
 
 export default EditProfile;

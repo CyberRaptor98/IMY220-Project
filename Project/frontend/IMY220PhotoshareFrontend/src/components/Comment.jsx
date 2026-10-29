@@ -1,4 +1,3 @@
-import {useState} from 'react'
 import { useUser } from "./UserContext.jsx";
 
 function Comment(props){

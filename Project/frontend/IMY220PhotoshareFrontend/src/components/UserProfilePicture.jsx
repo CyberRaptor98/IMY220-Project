@@ -2,7 +2,6 @@ import placeHolder from "../assets/placeholder.jpg";
 import { useUser } from "./UserContext";
 
 function UserProfilePicture({ image, alt }) {
-    const { currentUser } = useUser();
 
     function handleImage() {
         if (!image) {

@@ -12,7 +12,6 @@ function SearchBar(props){
     const localFeed = () => {
         setFeed(false);
     }
-
     return (
     <div className="mx-auto my-4 flex w-full max-w-4xl flex-wrap items-center gap-4 rounded-xl bg-white p-4 shadow-sm">
         <input

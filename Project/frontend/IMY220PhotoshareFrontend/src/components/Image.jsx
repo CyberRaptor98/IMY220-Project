@@ -1,5 +1,3 @@
-
-
 function Image({image,alt}){
 
     return(
@@ -8,5 +6,4 @@ function Image({image,alt}){
         </>
     )
 }
-
 export default Image;

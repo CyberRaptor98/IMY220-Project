@@ -67,6 +67,7 @@ function ProfilePage(){
             <h2 className="mt-8 w-full max-w-6xl border-b border-gray-300 pb-2 text-2xl font-bold text-gray-800">Albums</h2>
         </div>
     )
+    
 }
 
 export default ProfilePage;

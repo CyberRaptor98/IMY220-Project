@@ -6,7 +6,6 @@ import { useUser } from "./UserContext.jsx";
 function Post(props){
     const [comment,setComment] = useState ("");
     const [commentArray, setCommentArray] = useState ([]);
-    
     const { currentUser } = useUser();
 
     const post = props.Post;

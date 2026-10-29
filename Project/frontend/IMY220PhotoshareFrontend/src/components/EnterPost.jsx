@@ -64,7 +64,6 @@ function EnterPost(){
         console.error(err);
     }
 };
-
     return(
         <>
         <form onSubmit={addPost} className="mx-auto my-8 flex w-full max-w-lg flex-col gap-4 rounded-2xl bg-white p-6 shadow-md">
